@@ -23,6 +23,7 @@
 #include <assert.h>
 #include <glib.h>
 #include <glib/gprintf.h>
+#include <SDL2/SDL.h>
 
 static char *read_file_if_possible(const char *path)
 {
@@ -83,15 +84,4 @@ const char *xemu_get_os_info(void)
 	}
 
 	return os_info;
-}
-
-void xemu_open_web_browser(const char *url)
-{
-	char *cmd = g_strdup_printf("xdg-open %s", url);
-	int status = system(cmd);
-	if (status < 0) {
-		fprintf(stderr, "Failed to run: %s\n", cmd);
-	}
-
-	free(cmd);
 }
